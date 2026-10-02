@@ -32,7 +32,6 @@ const RANGES = {
   h: { min: 0.5, max: 15, label: "Altura (H)" },
   a: { min: 0.5, max: 20, label: "Ancho (A)" },
   l: { min: 0.1, max: 50, label: "Avance (L)" },
-  p: { min: 1, max: 60, label: "Perímetro (P)" },
 } as const;
 
 type Mode = "avance" | "resane" | "malla";
