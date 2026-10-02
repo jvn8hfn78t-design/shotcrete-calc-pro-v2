@@ -23,8 +23,17 @@ const ESPESOR_SH_2_M = 0.0508;
 const PULGADA_A_METROS = 0.0254;
 const SOBREESPESOR_CONTRACTUAL = 0.2;
 
-const RESANE_RENDIMIENTO = 11.5;
-const MALLA_RENDIMIENTO = 21;
+// ---- Rendimientos de shotcrete (m² por m³) ----
+// Cambiar estos valores aquí si los rendimientos varían.
+const RENDIMIENTOS_SHOTCRETE: Record<string, number> = {
+  "1": 17,
+  "1.5": 14,
+  "2": 11.5,
+  "3": 7.6,
+  "4": 5.7,
+};
+
+const RENDIMIENTO_RESANE = RENDIMIENTOS_SHOTCRETE["2"];
 
 // Rangos razonables para labores subterráneas
 const RANGES = {
@@ -82,91 +91,80 @@ function calculateResults(
   espesorNumero: number
 ): CalculationResult {
   if (mode === "avance") {
-  const P = 2 * H + A;
-  const areaBase = P * L;
-  const area = areaBase * FARC_DEFAULT;
-    const espesorM = espesorNumero * PULGADA_A_METROS;
+  const P = (2 * H + A) * FARC_DEFAULT;
+  const area = P * L;
 
-    const vBase =
-      R_REBOTE *
-      R_RUGOSIDAD *
-      espesorM *
-      L *
-      P *
-      FARC_DEFAULT;
+  const rendimiento =
+    RENDIMIENTOS_SHOTCRETE[String(espesorNumero)] ??
+    RENDIMIENTOS_SHOTCRETE["2"];
 
-    const vContract =
-  areaBase > 0 ? vBase + SOBREESPESOR_CONTRACTUAL : 0;
+  const vBase = area / rendimiento;
 
-    const longitudSacrificio =
-      2 * Math.max(H - 1.5, 0) + 2 * A;
+  const sh1 =
+    ((H - 1) * A * FARC_DEFAULT) /
+    RENDIMIENTOS_SHOTCRETE["1"];
 
-    const sh1 =
-      longitudSacrificio *
-      R_REBOTE *
-      R_RUGOSIDAD *
-      FARC_DEFAULT *
-      ESPESOR_SH_1_M;
+  const sh2 =
+    ((H - 1) * A * FARC_DEFAULT) /
+    RENDIMIENTOS_SHOTCRETE["2"];
 
-    const sh2 =
-      longitudSacrificio *
-      R_REBOTE *
-      R_RUGOSIDAD *
-      FARC_DEFAULT *
-      ESPESOR_SH_2_M;
+  const vReal1 = vBase + sh1;
+  const vReal2 = vBase + sh2;
 
-    const vReal1 = vBase + sh1;
-    const vReal2 = vBase + sh2;
-
-    const calib =
-      H <= 0
-        ? 0
-        : H > 4.2
-          ? Math.round((H - 1) * 2 * 2)
-          : Math.ceil(P * FARC_DEFAULT - 1) * 2;
-
-    return {
-      P,
-      area,
-      vBase,
-      vContract,
-      sh1,
-      sh2,
-      vReal1,
-      vReal2,
-      calib,
-    };
-  }
-
-  if (mode === "malla") {
-    const P = (2 * H + A) * FARC_DEFAULT;
-    const area = L * P;
-    const vMalla = area / MALLA_RENDIMIENTO;
-
-    return {
-      P,
-      area,
-      vMalla,
-    };
-  }
-
-  const area = H * L;
-  const vResane = area / RESANE_RENDIMIENTO;
-  const filas = H < 1.9 ? 1 : Math.floor(H);
   const calib =
-    H <= 0 || L <= 0
+    H <= 0
       ? 0
-      : filas * Math.ceil(Math.max(L - 1, 0));
-  const P = 2 * H;
+      : H > 4.2
+        ? Math.round((H - 1) * 2 * 2)
+        : Math.ceil(P * FARC_DEFAULT - 1) * 2;
 
   return {
     P,
     area,
-    vResane,
+    vBase,
+    sh1,
+    sh2,
+    vReal1,
+    vReal2,
     calib,
-    filas,
   };
 }
+
+  if (mode === "malla") {
+  const P = (2 * H + A) * FARC_DEFAULT;
+  const area = P * L;
+
+  const rendimiento =
+    RENDIMIENTOS_SHOTCRETE[String(espesorNumero)] ??
+    RENDIMIENTOS_SHOTCRETE["2"];
+
+  const vMalla = area / rendimiento;
+
+  return {
+    P,
+    area,
+    vMalla,
+  };
+}
+
+  const area = H * L;
+const vResane = area / RENDIMIENTO_RESANE;
+
+const filas = H < 1.9 ? 1 : Math.floor(H);
+
+const calib =
+  H <= 0 || L <= 0
+    ? 0
+    : filas * Math.ceil(Math.max(L - 1, 0));
+
+const P = 2 * H;
+
+return {
+  P,
+  area,
+  vResane,
+  calib,
+};
 const fmt = (n: number, d = 1) =>
   n.toLocaleString("es-PE", { minimumFractionDigits: d, maximumFractionDigits: d });
 const fmt2 = (n: number) => fmt(n, 1);
