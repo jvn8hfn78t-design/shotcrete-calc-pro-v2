@@ -46,13 +46,12 @@ const RANGES = {
 type Mode = "avance" | "resane" | "malla";
 type FieldKey = keyof typeof RANGES;
 
-type CalculationResult = {
+typetype CalculationResult = {
   P: number;
   area: number;
 
   // Avance
   vBase?: number;
-  vContract?: number;
   sh1?: number;
   sh2?: number;
   vReal1?: number;
@@ -1407,7 +1406,6 @@ Fecha: ${date}`;
       `Espesor: ${espesor}"`,
       `Perímetro: ${fmt2(shown.P)} m`,
       `Área: ${fmt2(shown.area)} m²`,
-      `Volumen contractual: ${fmt(shown.vContract ?? 0)} m³`,
       `SH Sacrificio 1": ${fmt(shown.sh1 ?? 0)} m³`,
       `M³ Labor: ${fmt(shown.vReal1 ?? 0)} m³`,
       `SH Sacrificio 2": ${fmt(shown.sh2 ?? 0)} m³`,
@@ -1898,14 +1896,7 @@ Fecha: ${date}`;
                 />
               </div>
             )}
-          {mode === "avance" && (
-            <p className="mt-3 text-xs text-muted-foreground">
-  Desglose: V_base = Rb × R × e × L × P × Fc ={" "}
-  {fmt(shown.vBase)} m³ · e = {espesor}" · Contrato = V_base +{" "}
-  {SOBREESPESOR_CONTRACTUAL.toFixed(2)} m³ · SH 1" ={" "}
-  {fmt(shown.sh1)} m³ · SH 2" = {fmt(shown.sh2)} m³
-</p>
-          )}
+
           {/* Verification table */}
 <div className="mt-6 overflow-x-auto rounded-lg border border-border">
   <table className="w-full min-w-[420px] text-left text-sm">
@@ -2008,7 +1999,7 @@ Fecha: ${date}`;
       ) : mode === "malla" ? (
         <tr className="border-t border-border bg-primary/5">
           <td className="px-4 py-2.5">
-            Volumen de malla (Área / 21)
+            Volumen de malla
           </td>
           <td className="px-4 py-2.5 text-right font-bold text-primary">
             {fmt(shown.vMalla, 2)}
