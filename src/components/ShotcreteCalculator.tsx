@@ -13,15 +13,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
-// ---- Constantes de cálculo (ajustables según contrato) ----
-const R_REBOTE = 1.10;
-const R_RUGOSIDAD = 1.16;
 const FARC_DEFAULT = 0.90;
-
-const ESPESOR_SH_1_M = 0.0254;
-const ESPESOR_SH_2_M = 0.0508;
-const PULGADA_A_METROS = 0.0254;
-const SOBREESPESOR_CONTRACTUAL = 0.2;
 
 // ---- Rendimientos de shotcrete (m² por m³) ----
 // Cambiar estos valores aquí si los rendimientos varían.
