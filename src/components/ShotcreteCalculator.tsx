@@ -1752,6 +1752,23 @@ Fecha: ${date}`;
   </div>
 )}
 
+<div className="border-t-2 border-border px-4 pb-4 pt-5 sm:px-6">
+  <p className="mb-3 text-sm font-extrabold uppercase tracking-widest text-foreground">
+    OBSERVACIONES
+  </p>
+
+  <textarea
+    value={observaciones}
+    onChange={(e) => {
+      setObservaciones(e.target.value);
+      invalidateCalculation();
+    }}
+    rows={4}
+    placeholder="Escribe una observación..."
+    className="w-full resize-none rounded-lg border-2 border-input bg-secondary px-3 py-3 text-base font-semibold text-foreground outline-none focus:border-primary"
+  />
+</div>
+
 <div className="flex flex-col gap-3 px-4 pb-4 pt-2 sm:flex-row sm:px-6 sm:pb-6">
   <button
     onClick={calculate}
