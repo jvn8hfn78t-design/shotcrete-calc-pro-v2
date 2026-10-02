@@ -265,7 +265,9 @@ const [a, setA] = useState<string[]>([""]);
 const [l, setL] = useState<string[]>([""]);
 const [labor, setLabor] = useState("");
 const [nivel, setNivel] = useState("");
+const [operador, setOperador] = useState("");
 const [espesor, setEspesor] = useState("2");
+const [observaciones, setObservaciones] = useState("");
 const [copied, setCopied] = useState(false);
 const [calculated, setCalculated] = useState(false);
 const [result, setResult] = useState<CalculationResult | null>(null);
@@ -1782,11 +1784,6 @@ Fecha: ${date}`;
     />
   </div>
 
-  <ResultCard
-    label="Volumen según contrato"
-    value={fmt(shown.vContract)}
-    unit="m³"
-  />
 </div>
 
   {/* Cálculo Shotcrete — Sacrificio 1" */}
