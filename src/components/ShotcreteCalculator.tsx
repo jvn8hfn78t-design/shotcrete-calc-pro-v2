@@ -90,14 +90,13 @@ function calculateResults(
 
   const vBase = area / rendimiento;
 
-  const sh1 =
-    ((H - 1) * A * FARC_DEFAULT) /
+    const sh1 =
+    (Math.max(H - 1, 0) * A * FARC_DEFAULT) /
     RENDIMIENTOS_SHOTCRETE["1"];
 
   const sh2 =
-    ((H - 1) * A * FARC_DEFAULT) /
+    (Math.max(H - 1, 0) * A * FARC_DEFAULT) /
     RENDIMIENTOS_SHOTCRETE["2"];
-
   const vReal1 = vBase + sh1;
   const vReal2 = vBase + sh2;
 
