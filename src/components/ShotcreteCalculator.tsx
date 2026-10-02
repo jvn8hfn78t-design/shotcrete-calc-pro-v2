@@ -101,11 +101,11 @@ function calculateResults(
   const vReal2 = vBase + sh2;
 
   const calib =
-    H <= 0
-      ? 0
-      : H > 4.2
-        ? Math.round((H - 1) * 2 * 2)
-        : Math.ceil(P * FARC_DEFAULT - 1) * 2;
+  H <= 0
+    ? 0
+    : H > 4.2
+      ? Math.round((H - 1) * 2 * 2)
+      : Math.ceil(P - 1) * 2;
 
   return {
     P,
