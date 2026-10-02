@@ -310,12 +310,13 @@ const resultsRef = useRef<HTMLDivElement>(null);
   const espesorNumero = parse(espesor);
 
 const espesorValido =
-  mode !== "avance" &&
-  mode !== "malla"
+  mode === "resane"
     ? true
-    : mode === "malla"
-      ? true
-      : Number.isFinite(espesorNumero) && espesorNumero > 0;
+    : Number.isFinite(espesorNumero) &&
+      Object.prototype.hasOwnProperty.call(
+        RENDIMIENTOS_SHOTCRETE,
+        String(espesorNumero)
+      );
 
 const valid = inputsComplete && errors.length === 0 && espesorValido;
 
