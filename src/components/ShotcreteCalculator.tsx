@@ -461,7 +461,9 @@ const reset = () => {
   setL([""]);
   setLabor("");
   setNivel("");
+  setOperador("");
   setEspesor("2");
+  setObservaciones("");
   setCalculated(false);
   setResult(null);
   setPhotos([]);
