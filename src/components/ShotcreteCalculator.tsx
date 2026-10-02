@@ -1705,29 +1705,35 @@ Fecha: ${date}`;
   </p>
 </div>
 </div>
-{mode === "avance" && (
+{(mode === "avance" || mode === "malla") && (
   <div className="border-t-2 border-border px-4 pb-4 pt-5 sm:px-6">
     <p className="mb-3 text-sm font-extrabold uppercase tracking-widest text-foreground">
       PARÁMETRO DEL CÁLCULO
     </p>
 
     <div className="flex items-center justify-between rounded-lg border-2 border-input bg-secondary px-4 py-3">
-      <label className="text-sm font-extrabold uppercase tracking-wide text-foreground">
+      <label
+        htmlFor="espesor"
+        className="text-sm font-extrabold uppercase tracking-wide text-foreground"
+      >
         ESPESOR <span className="text-steel">(pulg)</span>
       </label>
 
-      <input
-        type="number"
-        inputMode="decimal"
-        min="0"
-        step="0.1"
+      <select
+        id="espesor"
         value={espesor}
         onChange={(e) => {
-  setEspesor(e.target.value);
-  invalidateCalculation();
-}}
-        className="h-11 w-24 rounded-lg border-2 border-input bg-background px-3 text-center text-xl font-bold tabular-nums text-foreground outline-none focus:border-primary"
-      />
+          setEspesor(e.target.value);
+          invalidateCalculation();
+        }}
+        className="h-11 w-28 rounded-lg border-2 border-input bg-background px-3 text-center text-lg font-bold tabular-nums text-foreground outline-none focus:border-primary"
+      >
+        <option value="1">1"</option>
+        <option value="1.5">1.5"</option>
+        <option value="2">2"</option>
+        <option value="3">3"</option>
+        <option value="4">4"</option>
+      </select>
     </div>
   </div>
 )}
