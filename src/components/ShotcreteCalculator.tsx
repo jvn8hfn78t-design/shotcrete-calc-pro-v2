@@ -1479,6 +1479,27 @@ Fecha: ${date}`;
       </div>
 </div>
 
+{/* Datos del operador */}
+<div className="border-t-2 border-border px-4 pb-4 pt-5 sm:px-6">
+  <p className="mb-3 text-sm font-extrabold uppercase tracking-widest text-foreground">
+    DATOS DEL OPERADOR
+  </p>
+
+  <div>
+    <label className="mb-1 block text-sm font-extrabold uppercase tracking-wide text-foreground">
+      OPERADOR
+    </label>
+
+    <input
+      type="text"
+      value={operador}
+      onChange={(e) => setOperador(e.target.value)}
+      placeholder=""
+      className="h-12 w-full rounded-lg border-2 border-input bg-secondary px-3 text-base font-semibold text-foreground outline-none focus:border-primary"
+    />
+  </div>
+</div>
+
 {/* Inputs */}
 <div className="mt-4 border-t-2 border-border px-4 pb-4 pt-5 sm:px-6">
   <p className="mb-3 text-sm font-extrabold uppercase tracking-widest text-foreground">
