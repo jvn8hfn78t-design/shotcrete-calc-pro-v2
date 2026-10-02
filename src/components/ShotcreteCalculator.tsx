@@ -46,7 +46,7 @@ const RANGES = {
 type Mode = "avance" | "resane" | "malla";
 type FieldKey = keyof typeof RANGES;
 
-typetype CalculationResult = {
+type CalculationResult = {
   P: number;
   area: number;
 
