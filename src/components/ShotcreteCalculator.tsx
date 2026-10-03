@@ -87,8 +87,8 @@ function calculateResults(
   const area = P * L;
 
   const rendimiento =
-    RENDIMIENTOS_SHOTCRETE[String(espesorNumero)] ??
-    RENDIMIENTOS_SHOTCRETE["2"];
+  rendimientos[String(espesorNumero)] ??
+  rendimientos["2"];
 
   const vBase = area / rendimiento;
 
