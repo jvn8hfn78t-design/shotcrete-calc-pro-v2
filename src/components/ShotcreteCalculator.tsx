@@ -154,6 +154,7 @@ return {
   vResane,
   calib,
 };
+}
 const fmt = (n: number, d = 1) =>
   n.toLocaleString("es-PE", { minimumFractionDigits: d, maximumFractionDigits: d });
 const fmt2 = (n: number) => fmt(n, 1);
