@@ -503,6 +503,59 @@ const invalidateCalculation = () => {
   setResult(null);
 };
 
+const saveRendimientos = () => {
+  const next: Record<string, number> = {};
+
+  for (const key of Object.keys(DEFAULT_RENDIMIENTOS_SHOTCRETE)) {
+    const value = parse(rendimientosDraft[key] ?? "");
+
+    if (!(value > 0)) {
+      toast.error(
+        `El rendimiento de ${key} pulgadas debe ser mayor que 0`
+      );
+      return;
+    }
+
+    next[key] = value;
+  }
+
+  setRendimientos(next);
+
+  try {
+    localStorage.setItem(
+      RENDIMIENTOS_STORAGE_KEY,
+      JSON.stringify(next)
+    );
+  } catch {
+    toast.error("No se pudieron guardar los rendimientos");
+    return;
+  }
+
+  invalidateCalculation();
+  toast.success("Rendimientos guardados");
+};
+
+const resetRendimientos = () => {
+  setRendimientos(DEFAULT_RENDIMIENTOS_SHOTCRETE);
+
+  setRendimientosDraft(
+    Object.fromEntries(
+      Object.entries(DEFAULT_RENDIMIENTOS_SHOTCRETE).map(
+        ([key, value]) => [key, String(value)]
+      )
+    )
+  );
+
+  try {
+    localStorage.removeItem(RENDIMIENTOS_STORAGE_KEY);
+  } catch {
+    // Se mantienen los valores por defecto.
+  }
+
+  invalidateCalculation();
+  toast.success("Rendimientos restablecidos");
+};
+
 const reset = () => {
   setH([""]);
   setA([""]);
