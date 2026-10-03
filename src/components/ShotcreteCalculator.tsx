@@ -834,142 +834,108 @@ if (mode === "avance") {
   y += mainBoxHeight + 5;
 
   // ─────────────────────────────────────────────
-  // SACRIFICIO 1"
-  // ─────────────────────────────────────────────
+// CÁLCULO DE SHOTCRETE
+// ─────────────────────────────────────────────
 
-  const sacrificeBoxHeight = 26;
+const shotcreteBoxHeight = 34;
 
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(9);
-  pdf.setTextColor(35, 35, 35);
+pdf.setDrawColor(150, 150, 150);
+pdf.setLineWidth(0.4);
 
-  pdf.rect(
-    margin,
-    y,
-    contentWidth,
-    sacrificeBoxHeight
-  );
+pdf.rect(
+  margin,
+  y,
+  contentWidth,
+  shotcreteBoxHeight
+);
 
-  pdf.text(
-    'SH SACRIFICIO 1"',
-    margin + 3,
-    y + 5
-  );
+pdf.setTextColor(35, 35, 35);
+pdf.setFont("helvetica", "bold");
+pdf.setFontSize(10);
 
-  pdf.line(
-    margin,
-    y + 8,
-    margin + contentWidth,
-    y + 8
-  );
+pdf.text(
+  "CÁLCULO DE SHOTCRETE",
+  margin + 4,
+  y + 6
+);
 
-  pdf.line(
-    margin + half,
-    y + 8,
-    margin + half,
-    y + sacrificeBoxHeight
-  );
+// Línea horizontal debajo del título
+pdf.line(
+  margin,
+  y + 9,
+  margin + contentWidth,
+  y + 9
+);
 
-  pdf.setFontSize(8);
-  pdf.setTextColor(70, 70, 70);
+// Línea vertical central
+const shotcreteMidX = margin + contentWidth / 2;
 
-  pdf.text(
-    "SH",
-    margin + 4,
-    y + 14
-  );
+pdf.line(
+  shotcreteMidX,
+  y + 9,
+  shotcreteMidX,
+  y + shotcreteBoxHeight
+);
 
-  pdf.text(
-    'M³ LABOR 1"',
-    margin + half + 4,
-    y + 14
-  );
+// Encabezados
+pdf.setFont("helvetica", "bold");
+pdf.setFontSize(8);
+pdf.setTextColor(60, 60, 60);
 
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(10);
-  pdf.setTextColor(25, 25, 25);
+pdf.text(
+  'SH SACRIFICIO 1"',
+  margin + 4,
+  y + 15
+);
 
-  pdf.text(
-    `${fmtPDF(shown.sh1 ?? 0)} m³`,
-    margin + 4,
-    y + 22
-  );
+pdf.text(
+  'M³ LABOR 1"',
+  shotcreteMidX + 4,
+  y + 15
+);
 
-  pdf.text(
-    `${fmtPDF(shown.vReal1 ?? 0)} m³`,
-    margin + half + 4,
-    y + 22
-  );
+// Valores fila 1
+pdf.setFontSize(10);
+pdf.setTextColor(25, 25, 25);
 
-  y += sacrificeBoxHeight + 5;
+pdf.text(
+  `${fmtPDF(shown.sh1 ?? 0)} m³`,
+  margin + 4,
+  y + 22
+);
 
-  // ─────────────────────────────────────────────
-  // SACRIFICIO 2"
-  // ─────────────────────────────────────────────
+pdf.text(
+  `${fmtPDF(shown.vReal1 ?? 0)} m³`,
+  shotcreteMidX + 4,
+  y + 22
+);
 
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(9);
-  pdf.setTextColor(35, 35, 35);
+// Separador entre filas
+pdf.line(
+  margin,
+  y + 25,
+  margin + contentWidth,
+  y + 25
+);
 
-  pdf.rect(
-    margin,
-    y,
-    contentWidth,
-    sacrificeBoxHeight
-  );
+// Encabezados fila 2
+pdf.setFont("helvetica", "bold");
+pdf.setFontSize(8);
+pdf.setTextColor(60, 60, 60);
 
-  pdf.text(
-    'SH SACRIFICIO 2"',
-    margin + 3,
-    y + 5
-  );
+pdf.text(
+  'SH SACRIFICIO 2"',
+  margin + 4,
+  y + 30
+);
 
-  pdf.line(
-    margin,
-    y + 8,
-    margin + contentWidth,
-    y + 8
-  );
+pdf.text(
+  'M³ LABOR 2"',
+  shotcreteMidX + 4,
+  y + 30
+);
 
-  pdf.line(
-    margin + half,
-    y + 8,
-    margin + half,
-    y + sacrificeBoxHeight
-  );
-
-  pdf.setFontSize(8);
-  pdf.setTextColor(70, 70, 70);
-
-  pdf.text(
-    "SH",
-    margin + 4,
-    y + 14
-  );
-
-  pdf.text(
-    'M³ LABOR 2"',
-    margin + half + 4,
-    y + 14
-  );
-
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(10);
-  pdf.setTextColor(25, 25, 25);
-
-  pdf.text(
-    `${fmtPDF(shown.sh2 ?? 0)} m³`,
-    margin + 4,
-    y + 22
-  );
-
-  pdf.text(
-    `${fmtPDF(shown.vReal2 ?? 0)} m³`,
-    margin + half + 4,
-    y + 22
-  );
-
-  y += sacrificeBoxHeight + 5;
+y += shotcreteBoxHeight + 5;
 
   // ─────────────────────────────────────────────
   // CALIBRADORES
