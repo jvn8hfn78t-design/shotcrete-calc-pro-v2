@@ -1603,7 +1603,7 @@ Fecha: ${date}`;
     </div>
 
     <div className="space-y-2">
-      {Object.keys(DEFAULT_RENDIMIENTOS_SHOTCRETE).map((key) => (
+      {["1", "1.5", "2", "3", "4"].map((key) => (
         <div
           key={key}
           className="flex items-center justify-between gap-3 rounded-lg border-2 border-input bg-background px-3 py-2"
