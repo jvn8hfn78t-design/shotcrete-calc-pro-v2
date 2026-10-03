@@ -840,7 +840,7 @@ if (mode === "avance") {
 // CÁLCULO DE SHOTCRETE
 // ─────────────────────────────────────────────
 
-const shotcreteBoxHeight = 42;
+const shotcreteBoxHeight = 36;
 
 pdf.setDrawColor(150, 150, 150);
 pdf.setLineWidth(0.4);
@@ -888,13 +888,13 @@ pdf.setTextColor(60, 60, 60);
 pdf.text(
   'SH SACRIFICIO 1"',
   margin + 4,
-  y + 15
+  y + 14
 );
 
 pdf.text(
   'M³ LABOR 1"',
   shotcreteMidX + 4,
-  y + 15
+  y + 14
 );
 
 // Valores fila 1
@@ -904,21 +904,21 @@ pdf.setTextColor(25, 25, 25);
 pdf.text(
   `${fmtPDF(shown.sh1 ?? 0)} m³`,
   margin + 4,
-  y + 22
+  y + 20
 );
 
 pdf.text(
   `${fmtPDF(shown.vReal1 ?? 0)} m³`,
   shotcreteMidX + 4,
-  y + 22
+  y + 20
 );
 
 // Separador entre filas
 pdf.line(
   margin,
-  y + 25,
+  y + 23,
   margin + contentWidth,
-  y + 25
+  y + 23
 );
 
 // Encabezados fila 2
@@ -929,13 +929,13 @@ pdf.setTextColor(60, 60, 60);
 pdf.text(
   'SH SACRIFICIO 2"',
   margin + 4,
-  y + 30
+  y + 28
 );
 
 pdf.text(
   'M³ LABOR 2"',
   shotcreteMidX + 4,
-  y + 30
+  y + 28
 );
 
 // Valores fila 2
@@ -946,13 +946,13 @@ pdf.setTextColor(25, 25, 25);
 pdf.text(
   `${fmtPDF(shown.sh2 ?? 0)} m³`,
   margin + 4,
-  y + 37
+  y + 34
 );
 
 pdf.text(
   `${fmtPDF(shown.vReal2 ?? 0)} m³`,
   shotcreteMidX + 4,
-  y + 37
+  y + 34
 );
 
 y += shotcreteBoxHeight + 5;
