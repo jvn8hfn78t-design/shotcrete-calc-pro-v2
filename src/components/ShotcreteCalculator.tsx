@@ -621,7 +621,7 @@ const buildPDF = () => {
 
 let y = 40;
 
-const generalBoxHeight = 31;
+const generalBoxHeight = 27;
 
 pdf.setDrawColor(150, 150, 150);
 pdf.setLineWidth(0.4);
@@ -631,28 +631,32 @@ pdf.setTextColor(35, 35, 35);
 pdf.setFont("helvetica", "bold");
 pdf.setFontSize(10);
 
-pdf.text("DATOS GENERALES", margin + 4, y + 6);
+pdf.text(
+  "DATOS GENERALES",
+  margin + 4,
+  y + 6
+);
 
 const leftX = margin + 4;
 const rightX = margin + contentWidth / 2 + 3;
 
-pdf.setFontSize(9);
+pdf.setFontSize(8.5);
 
 pdf.setFont("helvetica", "bold");
-pdf.text("Fecha:", leftX, y + 15);
-pdf.text("Operador:", rightX, y + 15);
+pdf.text("Fecha:", leftX, y + 14);
+pdf.text("Operador:", rightX, y + 14);
 
 pdf.setFont("helvetica", "normal");
-pdf.text(date, leftX + 27, y + 15);
-pdf.text(operador || "—", rightX + 27, y + 15);
+pdf.text(date, leftX + 27, y + 14);
+pdf.text(operador || "—", rightX + 27, y + 14);
 
 pdf.setFont("helvetica", "bold");
-pdf.text("Nivel:", leftX, y + 24);
-pdf.text("Labor:", rightX, y + 24);
+pdf.text("Nivel:", leftX, y + 22);
+pdf.text("Labor:", rightX, y + 22);
 
 pdf.setFont("helvetica", "normal");
-pdf.text(nivel || "—", leftX + 27, y + 24);
-pdf.text(labor || "—", rightX + 27, y + 24);
+pdf.text(nivel || "—", leftX + 27, y + 22);
+pdf.text(labor || "—", rightX + 27, y + 22);
 
 y += generalBoxHeight;
 
