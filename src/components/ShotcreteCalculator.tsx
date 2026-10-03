@@ -94,7 +94,7 @@ function calculateResults(
 
     const sh1 =
     (Math.max(H - 1, 0) * A * FARC_DEFAULT) /
-    RENDIMIENTOS_SHOTCRETE["1"];
+    rendimientos["1"];
 
   const sh2 =
     (Math.max(H - 1, 0) * A * FARC_DEFAULT) /
@@ -127,7 +127,7 @@ function calculateResults(
 
   const rendimiento =
     RENDIMIENTOS_SHOTCRETE[String(espesorNumero)] ??
-    RENDIMIENTOS_SHOTCRETE["2"];
+    rendimientos["2"];
 
   const vMalla = area / rendimiento;
 
