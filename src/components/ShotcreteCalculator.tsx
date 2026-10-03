@@ -1285,14 +1285,37 @@ y += observationsBoxHeight + 6;
     pdf.addPage();
 
     const drawPhotoHeader = () => {
-      pdf.setFillColor(35, 35, 35);
-      pdf.rect(0, 0, pageWidth, 24, "F");
+  pdf.setFillColor(35, 35, 35);
+  pdf.rect(0, 0, pageWidth, 28, "F");
 
-      pdf.setTextColor(255, 255, 255);
-      pdf.setFont("helvetica", "bold");
-      pdf.setFontSize(13);
-      pdf.text("EVIDENCIA FOTOGRÁFICA", margin, 15);
-    };
+  pdf.setTextColor(255, 255, 255);
+  pdf.setFont("helvetica", "bold");
+  pdf.setFontSize(13);
+
+  pdf.text(
+    "EVIDENCIA FOTOGRÁFICA",
+    margin,
+    11
+  );
+
+  pdf.setFont("helvetica", "normal");
+  pdf.setFontSize(8);
+
+  pdf.text(
+    `Labor: ${labor || "—"}`,
+    margin,
+    21
+  );
+
+  pdf.text(
+    `Fecha: ${date}`,
+    pageWidth - margin,
+    21,
+    {
+      align: "right",
+    }
+  );
+};
 
     drawPhotoHeader();
 
