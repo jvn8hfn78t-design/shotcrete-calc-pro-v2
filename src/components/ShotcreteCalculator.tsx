@@ -97,8 +97,8 @@ function calculateResults(
     rendimientos["1"];
 
   const sh2 =
-    (Math.max(H - 1, 0) * A * FARC_DEFAULT) /
-    RENDIMIENTOS_SHOTCRETE["2"];
+  (Math.max(H - 1, 0) * A * FARC_DEFAULT) /
+  rendimientos["2"];
   const vReal1 = vBase + sh1;
   const vReal2 = vBase + sh2;
 
@@ -126,8 +126,8 @@ function calculateResults(
   const area = P * L;
 
   const rendimiento =
-    RENDIMIENTOS_SHOTCRETE[String(espesorNumero)] ??
-    rendimientos["2"];
+  rendimientos[String(espesorNumero)] ??
+  rendimientos["2"];
 
   const vMalla = area / rendimiento;
 
@@ -139,7 +139,7 @@ function calculateResults(
 }
 
   const area = H * L;
-const vResane = area / RENDIMIENTO_RESANE;
+const vResane = area / rendimientos["2"];
 
 const filas = H < 1.9 ? 1 : Math.floor(H);
 
@@ -363,10 +363,7 @@ const espesorValido =
   mode === "resane"
     ? true
     : Number.isFinite(espesorNumero) &&
-      Object.prototype.hasOwnProperty.call(
-        RENDIMIENTOS_SHOTCRETE,
-        String(espesorNumero)
-      );
+      Number(rendimientos[String(espesorNumero)]) > 0;
 
 const valid = inputsComplete && errors.length === 0 && espesorValido;
 
@@ -462,12 +459,13 @@ const removePhoto = (index: number) => {
   const L = average(l);
 
   const calculatedResult = calculateResults(
-    mode,
-    H,
-    A,
-    L,
-    espesorNumero
-  );
+  mode,
+  H,
+  A,
+  L,
+  espesorNumero,
+  rendimientos
+);
 
   setResult(calculatedResult);
   setCalculated(true);
