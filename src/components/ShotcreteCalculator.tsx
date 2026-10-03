@@ -1240,7 +1240,7 @@ if (mode === "resane") {
 // OBSERVACIONES
 // ─────────────────────────────────────────────
 
-const observationsBoxHeight = 38;
+const observationsBoxHeight = 30;
 
 pdf.setDrawColor(150, 150, 150);
 pdf.setLineWidth(0.4);
@@ -1277,10 +1277,10 @@ const observationLines = pdf.splitTextToSize(
 pdf.text(
   observationLines.slice(0, 3),
   margin + 4,
-  y + 14
+  y + 12
 );
 
-y += observationsBoxHeight + 6;
+y += observationsBoxHeight + 4;
 
   // ─────────────────────────────────────────────
   // FOTOS
