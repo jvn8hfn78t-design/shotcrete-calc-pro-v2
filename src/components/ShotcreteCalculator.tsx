@@ -17,7 +17,7 @@ const FARC_DEFAULT = 0.90;
 
 // ---- Rendimientos de shotcrete (m² por m³) ----
 // Cambiar estos valores aquí si los rendimientos varían.
-const RENDIMIENTOS_SHOTCRETE: Record<string, number> = {
+const DEFAULT_RENDIMIENTOS_SHOTCRETE: Record<string, number> = {
   "1": 17,
   "1.5": 14,
   "2": 11.5,
@@ -25,7 +25,8 @@ const RENDIMIENTOS_SHOTCRETE: Record<string, number> = {
   "4": 5.7,
 };
 
-const RENDIMIENTO_RESANE = RENDIMIENTOS_SHOTCRETE["2"];
+const RENDIMIENTOS_STORAGE_KEY =
+  "shotcrete-calc-pro-v2-rendimientos";
 
 // Rangos razonables para labores subterráneas
 const RANGES = {
