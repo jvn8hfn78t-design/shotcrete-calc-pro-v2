@@ -664,16 +664,16 @@ y += generalBoxHeight;
     // DATOS DE LA LABOR
     // ─────────────────────────────────────────────
     
-    y += 9;
-    
-    const laborRows =
-      mode === "avance"
-        ? 5
-        : mode === "malla"
-          ? 4
-          : 3;
-    
-    const laborBoxHeight = 11 + laborRows * 7;
+    y += 5;
+
+const laborRows =
+  mode === "avance"
+    ? 5
+    : mode === "malla"
+      ? 4
+      : 3;
+
+const laborBoxHeight = 10 + laborRows * 6;
     
     pdf.setDrawColor(150, 150, 150);
     pdf.setLineWidth(0.4);
@@ -694,7 +694,7 @@ y += generalBoxHeight;
       y + 6
     );
     
-    y += 14;
+    y += 12;
     
     const drawDataRow = (
       label: string,
@@ -717,14 +717,14 @@ y += generalBoxHeight;
           : "RESANE";
     
     drawDataRow("USO", modoTexto, y);
-    y += 7;
+    y += 6;
     
     drawDataRow(
       "ALTURA",
       `${fmtPDF(average(h))} m`,
       y
     );
-    y += 7;
+    y += 6;
     
     if (mode !== "resane") {
       drawDataRow(
@@ -732,7 +732,7 @@ y += generalBoxHeight;
         `${fmtPDF(average(a))} m`,
         y
       );
-      y += 7;
+      y += 6;
     }
     
     drawDataRow(
@@ -740,7 +740,7 @@ y += generalBoxHeight;
       `${fmtPDF(average(l))} m`,
       y
     );
-    y += 7;
+    y += 6;
     
     if (mode === "avance") {
       drawDataRow(
@@ -748,7 +748,7 @@ y += generalBoxHeight;
         `${espesor}"`,
         y
       );
-      y += 7;
+      y += 6;
     }
     
     y += 3;
