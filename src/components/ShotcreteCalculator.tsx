@@ -995,8 +995,9 @@ pdf.text(
 );
 
 y += calibBoxHeight + 5;
+}
 
-  // MALLA
+// MALLA
 if (mode === "malla") {
   const colWidth = contentWidth / 2;
 
