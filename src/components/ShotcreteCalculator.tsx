@@ -1231,6 +1231,52 @@ if (mode === "resane") {
   y += calibBoxHeight;
 }
 
+// ─────────────────────────────────────────────
+// OBSERVACIONES
+// ─────────────────────────────────────────────
+
+const observationsBoxHeight = 38;
+
+pdf.setDrawColor(150, 150, 150);
+pdf.setLineWidth(0.4);
+
+pdf.rect(
+  margin,
+  y,
+  contentWidth,
+  observationsBoxHeight
+);
+
+pdf.setFont("helvetica", "bold");
+pdf.setFontSize(9);
+pdf.setTextColor(35, 35, 35);
+
+pdf.text(
+  "OBSERVACIONES",
+  margin + 4,
+  y + 6
+);
+
+pdf.setFont("helvetica", "normal");
+pdf.setFontSize(9);
+pdf.setTextColor(50, 50, 50);
+
+const observationText =
+  observaciones.trim() || "Sin observaciones";
+
+const observationLines = pdf.splitTextToSize(
+  observationText,
+  contentWidth - 8
+);
+
+pdf.text(
+  observationLines.slice(0, 3),
+  margin + 4,
+  y + 14
+);
+
+y += observationsBoxHeight + 6;
+
   // ─────────────────────────────────────────────
   // FOTOS
   // ─────────────────────────────────────────────
