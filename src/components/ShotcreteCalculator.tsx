@@ -1538,7 +1538,7 @@ Fecha: ${date}`;
     </div>
 </div>
 
-<div className="border-t-2 border-border px-4 pb-4 pt-5 sm:px-6">
+<div className="relative px-4 pb-4 pt-5 sm:px-6 before:absolute before:inset-x-0 before:top-1 before:border-t-2 before:border-border">
   <p className="mb-4 text-sm font-extrabold uppercase tracking-widest text-foreground">
     MEDICIONES
   </p>
