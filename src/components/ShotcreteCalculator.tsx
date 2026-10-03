@@ -954,42 +954,47 @@ pdf.text(
 y += shotcreteBoxHeight + 5;
 
   // ─────────────────────────────────────────────
-  // CALIBRADORES
-  // ─────────────────────────────────────────────
+// CALIBRADORES
+// ─────────────────────────────────────────────
 
-  const calibBoxHeight = 24;
+const calibBoxHeight = 24;
 
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(9);
-  pdf.setTextColor(35, 35, 35);
+pdf.setDrawColor(150, 150, 150);
+pdf.setLineWidth(0.4);
 
-  pdf.rect(
-    margin,
-    y,
-    contentWidth,
-    calibBoxHeight
-  );
+pdf.rect(
+  margin,
+  y,
+  contentWidth,
+  calibBoxHeight
+);
 
-  pdf.text(
-    "CALIBRADORES",
-    margin + 3,
-    y + 5
-  );
+// Título
+pdf.setFont("helvetica", "bold");
+pdf.setFontSize(9);
+pdf.setTextColor(35, 35, 35);
 
-  pdf.setFontSize(12);
-  pdf.setTextColor(25, 25, 25);
+pdf.text(
+  "CALIBRADORES",
+  margin + 4,
+  y + 6
+);
 
-  pdf.text(
-    `${shown.calib ?? 0} UND`,
-    pageWidth / 2,
-    y + 17,
-    {
-      align: "center",
-    }
-  );
+// Valor
+pdf.setFont("helvetica", "bold");
+pdf.setFontSize(12);
+pdf.setTextColor(25, 25, 25);
 
-  y += calibBoxHeight;
-}
+pdf.text(
+  `${shown.calib ?? 0} UND`,
+  margin + contentWidth - 4,
+  y + 16,
+  {
+    align: "right",
+  }
+);
+
+y += calibBoxHeight + 5;
 
   // MALLA
 if (mode === "malla") {
