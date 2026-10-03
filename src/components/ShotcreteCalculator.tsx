@@ -1481,7 +1481,8 @@ Fecha: ${date}`;
 </div>
 
 {/* Datos del operador */}
-<div className="relative border-t-2 border-border px-4 pb-4 pt-5 sm:px-6">
+<div className="relative px-4 pb-4 pt-5 sm:px-6">
+  <div className="absolute left-0 right-0 top-1 border-t-2 border-border" />
   <p className="mb-3 text-sm font-extrabold uppercase tracking-widest text-foreground">
     DATOS DEL OPERADOR
   </p>
