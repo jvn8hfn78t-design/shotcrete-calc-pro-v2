@@ -773,8 +773,7 @@ y += generalBoxHeight;
 
   // AVANCE
 if (mode === "avance") {
-  const colWidth = contentWidth / 3;
-  const half = contentWidth / 2;
+  const colWidth = contentWidth / 2;
 
   // ─────────────────────────────────────────────
   // PERÍMETRO / ÁREA
@@ -837,7 +836,7 @@ if (mode === "avance") {
 // CÁLCULO DE SHOTCRETE
 // ─────────────────────────────────────────────
 
-const shotcreteBoxHeight = 34;
+const shotcreteBoxHeight = 42;
 
 pdf.setDrawColor(150, 150, 150);
 pdf.setLineWidth(0.4);
@@ -933,6 +932,23 @@ pdf.text(
   'M³ LABOR 2"',
   shotcreteMidX + 4,
   y + 30
+);
+
+// Valores fila 2
+pdf.setFont("helvetica", "bold");
+pdf.setFontSize(10);
+pdf.setTextColor(25, 25, 25);
+
+pdf.text(
+  `${fmtPDF(shown.sh2 ?? 0)} m³`,
+  margin + 4,
+  y + 37
+);
+
+pdf.text(
+  `${fmtPDF(shown.vReal2 ?? 0)} m³`,
+  shotcreteMidX + 4,
+  y + 37
 );
 
 y += shotcreteBoxHeight + 5;
