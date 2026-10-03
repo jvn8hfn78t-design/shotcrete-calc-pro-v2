@@ -621,7 +621,7 @@ const buildPDF = () => {
 
 let y = 40;
 
-const generalBoxHeight = 29;
+const generalBoxHeight = 31;
 
 pdf.setDrawColor(150, 150, 150);
 pdf.setLineWidth(0.4);
@@ -633,120 +633,121 @@ pdf.setFontSize(10);
 
 pdf.text("DATOS GENERALES", margin + 4, y + 6);
 
+const leftX = margin + 4;
+const rightX = margin + contentWidth / 2 + 3;
+
 pdf.setFontSize(9);
 
 pdf.setFont("helvetica", "bold");
-pdf.text("Fecha:", margin + 4, y + 14);
+pdf.text("Fecha:", leftX, y + 15);
+pdf.text("Operador:", rightX, y + 15);
 
 pdf.setFont("helvetica", "normal");
-pdf.text(date, margin + 30, y + 14);
+pdf.text(date, leftX + 27, y + 15);
+pdf.text(operador || "—", rightX + 27, y + 15);
 
 pdf.setFont("helvetica", "bold");
-pdf.text("Nivel:", margin + 4, y + 21);
+pdf.text("Nivel:", leftX, y + 24);
+pdf.text("Labor:", rightX, y + 24);
 
 pdf.setFont("helvetica", "normal");
-pdf.text(nivel || "—", margin + 30, y + 21);
-
-pdf.setFont("helvetica", "bold");
-pdf.text("Labor:", margin + contentWidth / 2, y + 21);
-
-pdf.setFont("helvetica", "normal");
-pdf.text(labor || "—", margin + contentWidth / 2 + 25, y + 21);
+pdf.text(nivel || "—", leftX + 27, y + 24);
+pdf.text(labor || "—", rightX + 27, y + 24);
 
 y += generalBoxHeight;
 
-  // ─────────────────────────────────────────────
-// DATOS DE LA LABOR
-// ─────────────────────────────────────────────
-
-y += 9;
-
-const laborRows =
-  mode === "avance"
-    ? 5
-    : mode === "malla"
-      ? 4
-      : 3;
-
-const laborBoxHeight = 11 + laborRows * 7;
-
-pdf.setDrawColor(150, 150, 150);
-pdf.setLineWidth(0.4);
-pdf.rect(
-  margin,
-  y,
-  contentWidth,
-  laborBoxHeight
-);
-
-pdf.setTextColor(35, 35, 35);
-pdf.setFont("helvetica", "bold");
-pdf.setFontSize(10);
-
-pdf.text(
-  "DATOS DE LA LABOR",
-  margin + 4,
-  y + 6
-);
-
-y += 14;
-
-const drawDataRow = (
-  label: string,
-  value: string,
-  rowY: number
-) => {
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(9);
-  pdf.text(label, margin + 4, rowY);
-
-  pdf.setFont("helvetica", "normal");
-  pdf.text(value, margin + 55, rowY);
-};
-
-const modoTexto =
-  mode === "avance"
-    ? "AVANCE"
-    : mode === "malla"
-      ? "MALLA"
-      : "RESANE";
-
-drawDataRow("USO", modoTexto, y);
-y += 7;
-
-drawDataRow(
-  "ALTURA",
-  `${fmtPDF(average(h))} m`,
-  y
-);
-y += 7;
-
-if (mode !== "resane") {
-  drawDataRow(
-    "ANCHO",
-    `${fmtPDF(average(a))} m`,
-    y
-  );
-  y += 7;
-}
-
-drawDataRow(
-  "AVANCE",
-  `${fmtPDF(average(l))} m`,
-  y
-);
-y += 7;
-
-if (mode === "avance") {
-  drawDataRow(
-    "ESPESOR",
-    `${espesor}"`,
-    y
-  );
-  y += 7;
-}
-
-y += 3;
+      // ─────────────────────────────────────────────
+    // DATOS DE LA LABOR
+    // ─────────────────────────────────────────────
+    
+    y += 9;
+    
+    const laborRows =
+      mode === "avance"
+        ? 5
+        : mode === "malla"
+          ? 4
+          : 3;
+    
+    const laborBoxHeight = 11 + laborRows * 7;
+    
+    pdf.setDrawColor(150, 150, 150);
+    pdf.setLineWidth(0.4);
+    pdf.rect(
+      margin,
+      y,
+      contentWidth,
+      laborBoxHeight
+    );
+    
+    pdf.setTextColor(35, 35, 35);
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(10);
+    
+    pdf.text(
+      "DATOS DE LA LABOR",
+      margin + 4,
+      y + 6
+    );
+    
+    y += 14;
+    
+    const drawDataRow = (
+      label: string,
+      value: string,
+      rowY: number
+    ) => {
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(9);
+      pdf.text(label, margin + 4, rowY);
+    
+      pdf.setFont("helvetica", "normal");
+      pdf.text(value, margin + 55, rowY);
+    };
+    
+    const modoTexto =
+      mode === "avance"
+        ? "AVANCE"
+        : mode === "malla"
+          ? "MALLA"
+          : "RESANE";
+    
+    drawDataRow("USO", modoTexto, y);
+    y += 7;
+    
+    drawDataRow(
+      "ALTURA",
+      `${fmtPDF(average(h))} m`,
+      y
+    );
+    y += 7;
+    
+    if (mode !== "resane") {
+      drawDataRow(
+        "ANCHO",
+        `${fmtPDF(average(a))} m`,
+        y
+      );
+      y += 7;
+    }
+    
+    drawDataRow(
+      "AVANCE",
+      `${fmtPDF(average(l))} m`,
+      y
+    );
+    y += 7;
+    
+    if (mode === "avance") {
+      drawDataRow(
+        "ESPESOR",
+        `${espesor}"`,
+        y
+      );
+      y += 7;
+    }
+    
+    y += 3;
 
   // Línea separadora
   y += 3;
@@ -776,7 +777,7 @@ if (mode === "avance") {
   const half = contentWidth / 2;
 
   // ─────────────────────────────────────────────
-  // PERÍMETRO / ÁREA / V. CONTRATO
+  // PERÍMETRO / ÁREA
   // ─────────────────────────────────────────────
 
   const mainBoxHeight = 24;
@@ -798,13 +799,6 @@ if (mode === "avance") {
     y + mainBoxHeight
   );
 
-  pdf.line(
-    margin + colWidth * 2,
-    y,
-    margin + colWidth * 2,
-    y + mainBoxHeight
-  );
-
   pdf.setFont("helvetica", "bold");
   pdf.setFontSize(8);
   pdf.setTextColor(60, 60, 60);
@@ -818,12 +812,6 @@ if (mode === "avance") {
   pdf.text(
     "ÁREA",
     margin + colWidth + 3,
-    y + 5
-  );
-
-  pdf.text(
-    "V. CONTRATO",
-    margin + colWidth * 2 + 3,
     y + 5
   );
 
@@ -842,13 +830,6 @@ if (mode === "avance") {
     y + 17
   );
 
-  pdf.setFont("helvetica", "bold");
-
-  pdf.text(
-    `${fmtPDF(shown.vContract ?? 0)} m³`,
-    margin + colWidth * 2 + 3,
-    y + 17
-  );
 
   y += mainBoxHeight + 5;
 
