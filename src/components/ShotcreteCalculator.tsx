@@ -1467,20 +1467,37 @@ const generatePDF = async () => {
   if (!result) return;
 
   try {
-    const base64 = result.pdf.output("datauristring").split(",")[1];
+    const isNative =
+      typeof window !== "undefined" &&
+      (window as any).Capacitor?.isNativePlatform?.();
 
-    await Filesystem.writeFile({
-      path: `PDR Shotcrete/${result.fileName}`,
-      data: base64,
-      directory: Directory.Documents,
-      recursive: true,
-    });
+    if (isNative) {
+      const base64 = result.pdf
+        .output("datauristring")
+        .split(",")[1];
 
-    toast.success("PDF guardado correctamente en Documentos");
+      await Filesystem.writeFile({
+        path: `PDR Shotcrete/${result.fileName}`,
+        data: base64,
+        directory: Directory.Documents,
+        recursive: true,
+      });
+
+      toast.success(
+        "PDF guardado correctamente en Documentos"
+      );
+
+      return;
+    }
+
+    // Navegador / PWA / Vercel
+    result.pdf.save(result.fileName);
+
+    toast.success("PDF descargado correctamente");
   } catch (error) {
-    console.error("Error al guardar PDF:", error);
+    console.error("Error al generar PDF:", error);
 
-    toast.error("No se pudo guardar el PDF");
+    toast.error("No se pudo generar el PDF");
   }
 };
 
