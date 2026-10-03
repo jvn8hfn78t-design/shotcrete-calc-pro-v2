@@ -1579,6 +1579,82 @@ Fecha: ${date}`;
     )}
   </div>
 </div>
+
+{showRendimientos && (
+  <div className="border-t-2 border-border bg-secondary/40 px-4 py-4 sm:px-6">
+    <div className="mb-4 flex items-center justify-between">
+      <div>
+        <p className="text-sm font-extrabold uppercase tracking-widest text-foreground">
+          RENDIMIENTOS
+        </p>
+        <p className="mt-1 text-xs font-semibold text-muted-foreground">
+          m² por m³ según espesor
+        </p>
+      </div>
+
+      <button
+        type="button"
+        onClick={() => setShowRendimientos(false)}
+        className="flex h-9 w-9 items-center justify-center rounded-lg border-2 border-input text-xl font-bold text-muted-foreground hover:border-destructive hover:text-destructive"
+        aria-label="Cerrar rendimientos"
+      >
+        ×
+      </button>
+    </div>
+
+    <div className="space-y-2">
+      {Object.keys(DEFAULT_RENDIMIENTOS_SHOTCRETE).map((key) => (
+        <div
+          key={key}
+          className="flex items-center justify-between gap-3 rounded-lg border-2 border-input bg-background px-3 py-2"
+        >
+          <span className="text-sm font-bold text-foreground">
+            {key}"
+          </span>
+
+          <input
+            type="number"
+            inputMode="decimal"
+            min="0.01"
+            step="any"
+            value={rendimientosDraft[key] ?? ""}
+            onChange={(e) => {
+              setRendimientosDraft((current) => ({
+                ...current,
+                [key]: e.target.value,
+              }));
+              invalidateCalculation();
+            }}
+            className="h-10 w-28 rounded-lg border-2 border-input bg-secondary px-3 text-right text-base font-bold tabular-nums text-foreground outline-none focus:border-primary"
+          />
+
+          <span className="w-12 text-xs font-bold text-muted-foreground">
+            m²/m³
+          </span>
+        </div>
+      ))}
+    </div>
+
+    <div className="mt-4 grid grid-cols-2 gap-2">
+      <button
+        type="button"
+        onClick={resetRendimientos}
+        className="h-11 rounded-lg border-2 border-input bg-transparent text-xs font-bold uppercase text-muted-foreground hover:border-destructive hover:text-destructive"
+      >
+        Restablecer
+      </button>
+
+      <button
+        type="button"
+        onClick={saveRendimientos}
+        className="h-11 rounded-lg bg-primary text-xs font-bold uppercase text-primary-foreground hover:brightness-110"
+      >
+        Guardar
+      </button>
+    </div>
+  </div>
+)}
+
       {/* Mode switcher */}
 <div className="border-t-2 border-border px-4 pb-2 pt-5 sm:px-6 sm:pt-5">
   <p className="mb-2 text-sm font-extrabold uppercase tracking-widest text-foreground">
