@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import jsPDF from "jspdf";
 import { Filesystem, Directory } from "@capacitor/filesystem";
 import { Share } from "@capacitor/share";
@@ -265,8 +265,55 @@ const [copied, setCopied] = useState(false);
 const [calculated, setCalculated] = useState(false);
 const [result, setResult] = useState<CalculationResult | null>(null);
 const [photos, setPhotos] = useState<string[]>([]);
-const resultsRef = useRef<HTMLDivElement>(null);
+const [rendimientos, setRendimientos] = useState<Record<string, number>>(
+  DEFAULT_RENDIMIENTOS_SHOTCRETE
+);
 
+const [rendimientosDraft, setRendimientosDraft] = useState<
+  Record<string, string>
+>(
+  Object.fromEntries(
+    Object.entries(DEFAULT_RENDIMIENTOS_SHOTCRETE).map(([key, value]) => [
+      key,
+      String(value),
+    ])
+  )
+);
+
+const [showRendimientos, setShowRendimientos] = useState(false);
+const resultsRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(RENDIMIENTOS_STORAGE_KEY);
+
+      if (!saved) return;
+
+      const parsed = JSON.parse(saved) as Record<string, unknown>;
+
+      const loaded = { ...DEFAULT_RENDIMIENTOS_SHOTCRETE };
+
+      Object.keys(DEFAULT_RENDIMIENTOS_SHOTCRETE).forEach((key) => {
+        const value = Number(parsed[key]);
+
+        if (Number.isFinite(value) && value > 0) {
+          loaded[key] = value;
+        }
+      });
+
+      setRendimientos(loaded);
+
+      setRendimientosDraft(
+        Object.fromEntries(
+          Object.entries(loaded).map(([key, value]) => [
+            key,
+            String(value),
+          ])
+        )
+      );
+    } catch {
+      // Si hay un dato inválido, se mantienen los valores por defecto.
+    }
+  }, []);
       const errors = useMemo(() => {
   const list: string[] = [];
 
