@@ -1450,7 +1450,7 @@ Fecha: ${date}`;
   </p>
 </div>
       {/* Mode switcher */}
-<div className="border-t-2 border-border px-4 pt-5 sm:px-6 sm:pt-5">
+<div className="border-t-2 border-border px-4 pb-2 pt-5 sm:px-6 sm:pt-5">
   <p className="mb-2 text-sm font-extrabold uppercase tracking-widest text-foreground">
     USO
   </p>
