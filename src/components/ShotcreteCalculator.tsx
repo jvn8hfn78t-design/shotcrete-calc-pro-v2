@@ -10,6 +10,7 @@ import {
   Camera,
   ImagePlus,
   X,
+  Settings,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -281,6 +282,7 @@ const [rendimientosDraft, setRendimientosDraft] = useState<
 );
 
 const [showRendimientos, setShowRendimientos] = useState(false);
+const [showMenu, setShowMenu] = useState(false);
 const resultsRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     try {
@@ -1540,7 +1542,7 @@ Fecha: ${date}`;
   return (
     <div className="overflow-hidden rounded-2xl border-2 border-border bg-card shadow-2xl">
       <div className="hazard-stripes h-3" />
-      <div className="px-4 py-4 text-center sm:px-6">
+      <div className="relative px-4 py-4 text-center sm:px-6">
   <h1 className="text-2xl font-black uppercase tracking-wider text-foreground">
     SHOTCRETE CALC PRO
   </h1>
@@ -1548,6 +1550,34 @@ Fecha: ${date}`;
   <p className="mt-1 text-sm font-extrabold uppercase tracking-[0.25em] text-muted-foreground">
     UM CHUNGAR
   </p>
+
+  <div className="absolute right-3 top-3">
+    <button
+      type="button"
+      onClick={() => setShowMenu((value) => !value)}
+      aria-label="Abrir menú"
+      aria-expanded={showMenu}
+      className="flex h-11 w-11 items-center justify-center rounded-lg text-2xl font-bold text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+    >
+      ⋮
+    </button>
+
+    {showMenu && (
+      <div className="absolute right-0 z-50 mt-1 w-48 overflow-hidden rounded-lg border-2 border-border bg-card shadow-xl">
+        <button
+          type="button"
+          onClick={() => {
+            setShowRendimientos(true);
+            setShowMenu(false);
+          }}
+          className="flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-bold text-foreground transition-colors hover:bg-secondary"
+        >
+          <span className="text-base">⚙</span>
+          <span>Rendimientos</span>
+        </button>
+      </div>
+    )}
+  </div>
 </div>
       {/* Mode switcher */}
 <div className="border-t-2 border-border px-4 pb-2 pt-5 sm:px-6 sm:pt-5">
