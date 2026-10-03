@@ -783,7 +783,7 @@ if (mode === "avance") {
   // PERÍMETRO / ÁREA
   // ─────────────────────────────────────────────
 
-  const mainBoxHeight = 24;
+  const mainBoxHeight = 20;
 
   pdf.setDrawColor(150, 150, 150);
   pdf.setLineWidth(0.4);
@@ -824,13 +824,13 @@ if (mode === "avance") {
   pdf.text(
     `${fmtPDF(shown.P)} m`,
     margin + 3,
-    y + 17
+    y + 15
   );
 
   pdf.text(
     `${fmtPDF(shown.area)} m²`,
     margin + colWidth + 3,
-    y + 17
+    y + 15
   );
 
 
@@ -961,7 +961,7 @@ y += shotcreteBoxHeight + 5;
 // CALIBRADORES
 // ─────────────────────────────────────────────
 
-const calibBoxHeight = 24;
+const calibBoxHeight = 20;
 
 pdf.setDrawColor(150, 150, 150);
 pdf.setLineWidth(0.4);
@@ -992,7 +992,7 @@ pdf.setTextColor(25, 25, 25);
 pdf.text(
   `${shown.calib ?? 0} UND`,
   margin + contentWidth - 4,
-  y + 16,
+  y + 14,
   {
     align: "right",
   }
