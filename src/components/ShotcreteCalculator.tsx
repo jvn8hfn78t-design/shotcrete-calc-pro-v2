@@ -94,11 +94,11 @@ function calculateResults(
   const vBase = area / rendimiento;
 
     const sh1 =
-    (Math.max(H - 1, 0) * A * FARC_DEFAULT) /
+    (Math.max(H - 1.5, 0) * A * FARC_DEFAULT) /
     rendimientos["1"];
 
   const sh2 =
-  (Math.max(H - 1, 0) * A * FARC_DEFAULT) /
+  (Math.max(H - 1.5, 0) * A * FARC_DEFAULT) /
   rendimientos["2"];
   const vReal1 = vBase + sh1;
   const vReal2 = vBase + sh2;
