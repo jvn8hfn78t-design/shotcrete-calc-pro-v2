@@ -79,7 +79,8 @@ function calculateResults(
   H: number,
   A: number,
   L: number,
-  espesorNumero: number
+  espesorNumero: number,
+  rendimientos: Record<string, number>
 ): CalculationResult {
   if (mode === "avance") {
   const P = (2 * H + A) * FARC_DEFAULT;
