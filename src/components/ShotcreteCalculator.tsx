@@ -751,10 +751,10 @@ const laborBoxHeight = 10 + laborRows * 6;
       y += 6;
     }
     
-    y += 3;
+    y += 2;
 
-  // Línea separadora
-  y += 3;
+// Línea separadora
+y += 1;
 
   pdf.setDrawColor(190, 190, 190);
   pdf.line(margin, y, pageWidth - margin, y);
@@ -763,7 +763,7 @@ const laborBoxHeight = 10 + laborRows * 6;
   // RESULTADOS
   // ─────────────────────────────────────────────
 
-  y += 10;
+  y += 6;
 
   pdf.setFillColor(235, 235, 235);
   pdf.rect(margin, y, contentWidth, 8, "F");
